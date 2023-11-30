@@ -1,0 +1,7 @@
+@PACKAGE_INIT@
+
+include("${CMAKE_CURRENT_LIST_DIR}/unitTargets.cmake")
+
+if(NOT DEFINED UNIT_INCLUDE_DIR)
+  set(UNIT_INCLUDE_DIR "${CMAKE_INSTALL_PREFIX}/include")
+endif()
