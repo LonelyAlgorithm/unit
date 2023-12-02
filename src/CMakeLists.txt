@@ -1,23 +1,12 @@
-# Find the geometry library
 find_package(geometry REQUIRED)
+find_package(controllers REQUIRED)
 
-# Set path to Eigen
 set(EIGEN_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../external/eigen")
 
-# Library
 add_library(SimpleUnit STATIC SimpleUnit.cpp)
-
-# Include directories
 target_include_directories(SimpleUnit PRIVATE ${EIGEN_PATH})
-target_include_directories(SimpleUnit PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-    $<INSTALL_INTERFACE:include>
-)
+target_link_libraries(SimpleUnit PUBLIC geometry::geometry)
 
-# Link with the geometry library
-target_link_libraries(SimpleUnit PRIVATE geometry::geometry)
-
-# Installation
 include(GNUInstallDirs)
 
 install(TARGETS SimpleUnit
